@@ -9,10 +9,18 @@
 
 using namespace std;
 
+/**
+ * @brief get_nums
+ * parce input, extrt numbers and return them
+ * @details get_nums
+ * get string from cin and split input by spaces in vector res.
+ * res vector interpreted by stod function. Not numbers will discard.
+ * @return vector numbers
+ */
 vector<double> get_nums()
 {
     string input;
-    cout<<"введите число";
+    cout<<"введите числа:"<<endl;
     getline(cin, input);
     cout<<endl<<input<<endl;
     vector<string> res;
@@ -43,9 +51,14 @@ vector<double> get_nums()
     return nums;
 }
 
+/**
+ * @brief main
+ * select from input min and max numbers
+ * @return
+ */
 int main()
 {
-    cout << "Hello World!" << endl;
+    cout << "Min Max programm" << endl;
     auto nums = get_nums();
     auto answer = minmax_element(nums.cbegin(), nums.cend());
     cout << "min is:" << *answer.first<<endl;
