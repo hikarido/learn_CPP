@@ -81,6 +81,23 @@ void join_test()
     test = {-5, -4, -3, -1, 2, 3, 4, 5, 6, 7};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
 
+    from = {};
+    to = {};
+    join(from, to);
+    test = {};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+    from = {1};
+    to = {};
+    join(from, to);
+    test = {1};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+    from = {};
+    to = {1};
+    join(from, to);
+    test = {1};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
     cout<<"End join test: all tests passed"<<endl;
 }
 
