@@ -18,7 +18,12 @@ void join (const std::vector< int > &from, std::vector< int > &to);
 из обоих, так же расположенных в порядке возрастания.
 */
 
-
+/**
+ * @brief print
+ * print iterable sequence on screen
+ * @param vec iterable sequence
+ *
+ */
 void print(auto &vec)
 {
     cout<<"[";
@@ -29,7 +34,13 @@ void print(auto &vec)
     cout<<"]"<<endl;
 }
 
-
+/**
+ * @brief join
+ * performe merging of sorted sequences from and to into one container.
+ * Result will placed into param @see to
+ * @param from
+ * @param to
+ */
 void join(const std::vector<int> &from, std::vector<int> &to)
 {
     vector<int> res(to.size()+from.size());
