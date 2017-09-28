@@ -38,14 +38,40 @@ void join(const std::vector<int> &from, std::vector<int> &to)
     to = move(res);
 }
 
+/**
+ * @brief join_test
+ * test for join function
+ */
 void join_test()
 {
+    cout<<"begin join test:"<<endl;
+
     vector<int> from{1,2,3,5};
     vector<int> to{-10, -9, -9, -8};
     join(from, to);
     vector<int> test = {-10, -9, -9, -8, 1, 2, 3, 5};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
-}s
+
+    from = {-1,-2,-3,-4,-5};
+    to = {1,2,3,4};
+    join(from, to);
+    test = {-1, -2, -3, -4, -5, 1, 2, 3, 4};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+    from = {-1, 2, 3, 4};
+    to = {-5, -4, -3, 5, 6, 7};
+    join(from, to);
+    test = {-5, -4, -3, -1, 2, 3, 4, 5, 6, 7};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+    from = {-5, -4, -3, 5, 6, 7};
+    to = {-1, 2, 3, 4};
+    join(from, to);
+    test = {-5, -4, -3, -1, 2, 3, 4, 5, 6, 7};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+    cout<<"End join test: all tests passed"<<endl;
+}
 
 int main()
 {
