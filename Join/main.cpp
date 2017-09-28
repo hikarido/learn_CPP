@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cassert>
 
 using namespace std;
 
@@ -37,27 +38,19 @@ void join(const std::vector<int> &from, std::vector<int> &to)
     to = move(res);
 }
 
+void join_test()
+{
+    vector<int> from{1,2,3,5};
+    vector<int> to{-10, -9, -9, -8};
+    join(from, to);
+    vector<int> test = {-10, -9, -9, -8, 1, 2, 3, 5};
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+}s
+
 int main()
 {
-    vector<int> a = {1,2,3, 1100, 2344};
-    vector<int> b = {23,24,25};
 
-
-    cout<<"before"<<endl;
-    print(a);
-    print(b);
-    join(b, a);
-
-    cout<<"after"<<endl;
-    print(a);
-    print(b);
-
-
-
-    cout << endl;
-
-
-
+    join_test();
     return 0;
 }
 
