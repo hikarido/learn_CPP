@@ -47,13 +47,16 @@ void join(const std::vector<int> &from, std::vector<int> &to)
     //if vec to can store itself and vec from
     if(to.capacity() >= to.size() + from.size())
     {
-        size_t old_to_size = to.size();
+        cout <<"brunch A"<<endl;
+        vector<int>::iterator old_end = to.end();
         to.resize(to.size()+from.size());
-        vector<int>::iterator middle = copy(from.cbegin(), from.cend(), to.begin()+old_to_size);
-        inplace_merge(to.begin(), middle, to.end());
+        copy(from.cbegin(), from.cend(), old_end);
+        inplace_merge(to.begin(), old_end, to.end());
+        return;
     }
 
     //othercase create new vector and assign it on ref to
+    cout << "Brunch B"<<endl;
     vector<int> res(to.size()+from.size());
     merge(from.begin(), from.end(),
          to.begin(), to.end(), res.begin());
@@ -67,48 +70,72 @@ void join(const std::vector<int> &from, std::vector<int> &to)
 void join_test()
 {
     cout<<"begin join test:"<<endl;
-
+    cout << "test 0"<<endl;
     vector<int> from{1,2,3,5};
     vector<int> to{-10, -9, -9, -8};
     join(from, to);
     vector<int> test = {-10, -9, -9, -8, 1, 2, 3, 5};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
 
+    cout << "test 1"<<endl;
     from = {-1,-2,-3,-4,-5};
     to = {1,2,3,4};
     join(from, to);
     test = {-1, -2, -3, -4, -5, 1, 2, 3, 4};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
 
+    cout << "test 2"<<endl;
     from = {-1, 2, 3, 4};
     to = {-5, -4, -3, 5, 6, 7};
     join(from, to);
     test = {-5, -4, -3, -1, 2, 3, 4, 5, 6, 7};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
 
+    cout << "test 3"<<endl;
+    cout << "=======test======="<<endl;
     from = {-5, -4, -3, 5, 6, 7};
     to = {-1, 2, 3, 4};
+    cout << to.size()<<endl;
+    cout << from.size()<< endl;
+    cout << to.capacity() << endl;
     join(from, to);
     test = {-5, -4, -3, -1, 2, 3, 4, 5, 6, 7};
-    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+    print(to);
+    cout << to.size()<<endl;
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true); //<-- this test was errornous
+    cout << "=======end_test======="<<endl;
 
+    cout << "test 4"<<endl;
     from = {};
     to = {};
     join(from, to);
     test = {};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
 
+    cout << "test 5"<<endl;
     from = {1};
     to = {};
     join(from, to);
     test = {1};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
 
+    cout << "test 6"<<endl;
     from = {};
     to = {1};
     join(from, to);
     test = {1};
     assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+    cout << "test 7"<<endl;
+    from = {1,2,3,4,5,6,7,8,9,10};
+    to.reserve(100);
+    to = {1,2,3};
+    join(from, to);
+    test = {1,1,2,2,3,3,4,5,6,7,8,9,10};
+    print(to);
+    assert(equal(to.cbegin(), to.cend(), test.cbegin()) == true);
+
+
     cout<<"End join test: all tests passed"<<endl;
 }
 
