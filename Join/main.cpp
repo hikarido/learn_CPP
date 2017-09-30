@@ -43,6 +43,17 @@ void print(auto &vec)
  */
 void join(const std::vector<int> &from, std::vector<int> &to)
 {
+    //perform merge vec from into vec to
+    //if vec to can store itself and vec from
+    if(to.capacity() >= to.size() + from.size())
+    {
+        size_t old_to_size = to.size();
+        to.resize(to.size()+from.size());
+        vector<int>::iterator middle = copy(from.cbegin(), from.cend(), to.begin()+old_to_size);
+        inplace_merge(to.begin(), middle, to.end());
+    }
+
+    //othercase create new vector and assign it on ref to
     vector<int> res(to.size()+from.size());
     merge(from.begin(), from.end(),
          to.begin(), to.end(), res.begin());
