@@ -113,6 +113,10 @@ void work_by_mode(Mod work_mod)
         case  Mod::help:
             print_help();
             break;
+
+        case Mod::miss_arg:
+            cout<< "Error in passed command line arguments"<<endl;
+            break;
         default:
             break;
     }
