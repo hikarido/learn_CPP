@@ -97,19 +97,28 @@ void arg_to_int_test()
     cout << "End arg_to_int_test" << endl;
 }
 
-#define DEBUG
+void print_help()
+{
+    cout << "Programm to searching Prime numbers by Erathosfen algorithm" << endl;
+    cout << "use:\n\
+            <prog name> -help         - to display this help\n\
+            <prog name> N             - to see all prime numbers before N\n\
+            <prog name> N -bench_mark - to see numbers and bench mark\n";
+}
 
 void work_by_mode(Mod work_mod)
 {
     switch (work_mod)
     {
         case  Mod::help:
-
+            print_help();
             break;
         default:
             break;
     }
 }
+
+//#define DEBUG
 
 /**
  * @brief main
@@ -134,7 +143,7 @@ int main(int argc, char *argv[])
     if(argc == 3)
         cmd_args[1] = argv[2];
 
-    parce_argv(cmd_args);
+    work_by_mode(parce_argv(cmd_args));
 #endif
 
 #ifdef DEBUG
