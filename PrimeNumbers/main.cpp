@@ -99,6 +99,18 @@ void arg_to_int_test()
 
 #define DEBUG
 
+void work_by_mode(Mod work_mod)
+{
+    switch (work_mod)
+    {
+        case  Mod::help:
+
+            break;
+        default:
+            break;
+    }
+}
+
 /**
  * @brief main
  * Destination of this program is calculation prime numbers
