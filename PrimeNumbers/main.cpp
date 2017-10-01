@@ -52,14 +52,32 @@ pair<bool, int> arg_to_int(const string& str)
  */
 Mod parce_argv(const array<string,2> & args)
 {
+    if(args[0] == "-help")
+        return Mod::help;
+
+    if(arg_to_int(args[0]).first == false)
+        return Mod::miss_arg;
+
+    if(args[1] == "-bench_mark")
+        return Mod::bench_mark;
+
     return Mod::normal;
 }
 
 void parce_argv_test()
 {
     cout << "Start parce_argv_test"<<endl;
+    assert(parce_argv({"123",""}) == Mod::normal);
+    assert(parce_argv({"-123","jfkfl"}) == Mod::normal);
+    assert(parce_argv({"0",""}) == Mod::normal);
 
+    assert(parce_argv({"123","-bench_mark"}) == Mod::bench_mark);
+    assert(parce_argv({"kfl","-bench_mark"}) == Mod::miss_arg);
 
+    assert(parce_argv({"-help","-none"}) == Mod::help);
+    assert(parce_argv({"","-help"}) == Mod::miss_arg);
+    assert(parce_argv({"123","-help"}) == Mod::normal);
+    assert(parce_argv({"-help","jfjfn"}) == Mod::help);
     cout << "End parce_argv_test"<<endl;
 }
 
@@ -109,6 +127,7 @@ int main(int argc, char *argv[])
 
 #ifdef DEBUG
     arg_to_int_test();
+    parce_argv_test();
 
 #endif
     return 0;
