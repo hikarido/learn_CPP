@@ -1,8 +1,11 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <cassert>
 #include <array>
 #include <utility>
+#include <vector>
+#include <type_traits>
+#include <typeinfo>
 
 using namespace std;
 
@@ -106,23 +109,76 @@ void print_help()
             <prog name> N -bench_mark - to see numbers and bench mark\n";
 }
 
-void work_by_mode(Mod work_mod)
+vector<int> erathosfen(int number)
 {
+
+    return {1,2,3};
+}
+
+/**
+* @brief work_by_mode
+* switch work flow programm by mode
+* @see Mod::bench_mark call @see erathosfen and measure work speed
+* @see Mod::normal call @see erathosfen(
+* @see Mod::help call @see print_help
+* @see Mod::miss_arg print error massage
+* if work_mod not is Mod will called exit()
+* @param work_mod
+* @param number to erathosfen
+* @return choised mod
+*/
+Mod work_by_mode(Mod work_mod, const string& number)
+{
+    vector<int> prime_numbers;
     switch (work_mod)
     {
         case  Mod::help:
             print_help();
-            break;
+            return Mod::help;
 
         case Mod::miss_arg:
             cout<< "Error in passed command line arguments"<<endl;
+            return Mod::miss_arg;
+
+        case Mod::bench_mark:
+            //TODO: make bench mark
+            prime_numbers = erathosfen(arg_to_int(number).second);
+            //end bench mark
             break;
+
+        case Mod::normal:
+            prime_numbers = erathosfen(arg_to_int(number).second);
+            break;
+
         default:
+            cout << "error mode in work_by_mode. exit(-1) called."<<endl;
+            exit(-1);
             break;
     }
+
+    for(auto &i: prime_numbers)
+    {
+        cout << i << ", ";
+    }
+
+    return work_mod;
 }
 
-//#define DEBUG
+void work_by_mode_test()
+{
+    cout << "Start work_by_mode" << endl;
+    assert(work_by_mode(Mod::bench_mark, "123") == Mod::bench_mark);
+    assert(work_by_mode(Mod::normal, "123") == Mod::normal);
+    assert(work_by_mode(Mod::help, "123") == Mod::help);
+    assert(work_by_mode(Mod::miss_arg, "123") == Mod::miss_arg);
+//    assert(work_by_mode(static_cast<Mod>(10), "123")
+//           == Mod::miss_arg); //<-- exit(-1) called normal
+    cout << "End work_by_mode" << endl;
+
+
+}
+
+#define DEBUG
 
 /**
  * @brief main
@@ -147,12 +203,13 @@ int main(int argc, char *argv[])
     if(argc == 3)
         cmd_args[1] = argv[2];
 
-    work_by_mode(parce_argv(cmd_args));
+    work_by_mode(parce_argv(cmd_args), cmd_args[1]);
 #endif
 
 #ifdef DEBUG
     arg_to_int_test();
     parce_argv_test();
+    work_by_mode_test();
 
 #endif
     return 0;
