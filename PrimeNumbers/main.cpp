@@ -4,8 +4,6 @@
 #include <array>
 #include <utility>
 #include <vector>
-#include <type_traits>
-#include <typeinfo>
 
 using namespace std;
 
@@ -153,7 +151,6 @@ Mod work_by_mode(Mod work_mod, const string& number)
         default:
             cout << "error mode in work_by_mode. exit(-1) called."<<endl;
             exit(-1);
-            break;
     }
 
     for(auto &i: prime_numbers)
