@@ -110,6 +110,7 @@ void print_help()
 vector<int> erathosfen(int number)
 {
 
+
     return {1,2,3};
 }
 
@@ -175,7 +176,7 @@ void work_by_mode_test()
 
 }
 
-#define DEBUG
+//#define DEBUG
 
 /**
  * @brief main
