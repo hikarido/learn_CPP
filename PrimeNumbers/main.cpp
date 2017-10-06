@@ -108,12 +108,24 @@ void print_help()
             <prog name> N -bench_mark - to see numbers and bench mark\n";
 }
 
-vector<int> erathosfen(int number)
+vector<int> erathosfen(const int number)
 {
 
-    boost::dynamic_bitset<> sieve(number);
-    sieve.set();
-    cout <<"sieve: "<< sieve << endl;
+//    boost::dynamic_bitset<> sieve(number);
+//    int p = 1;
+//    int i = 1;
+
+//    do{
+//        while(i*p < number)
+//        {
+//            sieve.set(i*p, 1);
+//            ++i;
+//        }
+//        i = p+1;
+//        while(sieve[])
+
+//    }while(p)
+
     return {1,2,3};
 }
 
