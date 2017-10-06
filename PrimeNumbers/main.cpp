@@ -113,7 +113,7 @@ vector<int> erathosfen(int number)
 
     boost::dynamic_bitset<> sieve(number);
     sieve.set();
-    cout <<"sieve: "<< sieve[0] << endl;
+    cout <<"sieve: "<< sieve << endl;
     return {1,2,3};
 }
 
@@ -204,7 +204,7 @@ int main(int argc, char *argv[])
     if(argc == 3)
         cmd_args[1] = argv[2];
 
-    work_by_mode(parce_argv(cmd_args), cmd_args[1]);
+    work_by_mode(parce_argv(cmd_args), cmd_args[0]);
 #endif
 
 #ifdef DEBUG
