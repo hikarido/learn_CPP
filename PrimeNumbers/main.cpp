@@ -4,6 +4,7 @@
 #include <array>
 #include <utility>
 #include <vector>
+#include <boost/dynamic_bitset.hpp>
 
 using namespace std;
 
@@ -110,7 +111,9 @@ void print_help()
 vector<int> erathosfen(int number)
 {
 
-
+    boost::dynamic_bitset<> sieve(number);
+    sieve.set();
+    cout <<"sieve: "<< sieve[0] << endl;
     return {1,2,3};
 }
 
