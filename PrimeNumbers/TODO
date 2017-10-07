@@ -1,2 +1,3 @@
 + add checks on zero and negative cmd args
-add bench mark
++add bench mark
+in erotosohen algorithm in the end result  vector hav to long size

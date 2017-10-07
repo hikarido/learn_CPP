@@ -5,6 +5,7 @@
 #include <utility>
 #include <vector>
 #include <boost/dynamic_bitset.hpp>
+#include <chrono>
 
 using namespace std;
 
@@ -168,6 +169,7 @@ vector<int> erathosfen(const int number)
 Mod work_by_mode(Mod work_mod, const string& number)
 {
     vector<int> prime_numbers;
+    std::chrono::nanoseconds benck_mark_result{};
     switch (work_mod)
     {
         case  Mod::help:
@@ -179,11 +181,16 @@ Mod work_by_mode(Mod work_mod, const string& number)
             return Mod::miss_arg;
 
         case Mod::bench_mark:
-            //TODO: make bench mark
+        {
+            //start bench mark
+            auto start = std::chrono::system_clock::now();
             prime_numbers = erathosfen(arg_to_int(number).second);
+            auto end = std::chrono::system_clock::now();
+            benck_mark_result =
+                    std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
             //end bench mark
             break;
-
+        }
         case Mod::normal:
             prime_numbers = erathosfen(arg_to_int(number).second);
             break;
@@ -197,6 +204,13 @@ Mod work_by_mode(Mod work_mod, const string& number)
     {
         cout << i << ", ";
     }
+
+    cout << endl;
+
+    if(work_mod == Mod::bench_mark)
+        cout << endl << "Working time: "\
+             << benck_mark_result.count() <<" ns"<<endl;
+
 
     return work_mod;
 }
@@ -215,7 +229,7 @@ void work_by_mode_test()
 
 }
 
-#define DEBUG
+//#define DEBUG
 
 /**
  * @brief main
