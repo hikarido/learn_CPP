@@ -116,7 +116,8 @@ void print_help()
     cout << "use:\n\
             <prog name> -help         - to display this help\n\
             <prog name> N             - to see all prime numbers before N\n\
-            <prog name> N -bench_mark - to see numbers and bench mark\n";
+            <prog name> N -bench_mark - to see numbers and bench mark\n\
+            NOTE: N must be more then 2\n";
 }
 
 vector<int> erathosfen(const int number)
