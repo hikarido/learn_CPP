@@ -111,22 +111,34 @@ void print_help()
 vector<int> erathosfen(const int number)
 {
 
-//    boost::dynamic_bitset<> sieve(number);
-//    int p = 1;
-//    int i = 1;
+    boost::dynamic_bitset<> sieve(number);
+    sieve.set(0, true);
+    sieve.set(1, true);
+    for(int p = 2; p*p < number; p++)
+    {
+        //p is prime and not strided out then
+        if(sieve.test(p) == false)
+        {
+            // need strike out all multiple of k
+            for(int l = p*p; l < number; l+=p)
+            {
+                sieve.set(l, true);
+            }
+        }
+    }
 
-//    do{
-//        while(i*p < number)
-//        {
-//            sieve.set(i*p, 1);
-//            ++i;
-//        }
-//        i = p+1;
-//        while(sieve[])
+    vector<int> primes;
+    primes.reserve(number);
 
-//    }while(p)
+    for(int i = 2; i < number; i++)
+    {
+       if(sieve.test(i) == false)
+       {
+            primes.push_back(i);
+       }
+    }
 
-    return {1,2,3};
+    return move(primes);
 }
 
 /**
