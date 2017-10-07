@@ -1,1 +1,2 @@
-add checks on zero and negative cmd args
++ add checks on zero and negative cmd args
+add bench mark

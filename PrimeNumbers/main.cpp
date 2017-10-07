@@ -57,8 +57,15 @@ Mod parce_argv(const array<string,2> & args)
     if(args[0] == "-help")
         return Mod::help;
 
-    if(arg_to_int(args[0]).first == false)
-        return Mod::miss_arg;
+
+    {
+        auto ans = arg_to_int(args[0]);
+
+        if(ans.first == false)
+            return Mod::miss_arg;
+        else if(ans.second < 0 || ans.second <= 2)
+            return Mod::miss_arg;
+    }
 
     if(args[1] == "-bench_mark")
         return Mod::bench_mark;
@@ -70,8 +77,8 @@ void parce_argv_test()
 {
     cout << "Start parce_argv_test"<<endl;
     assert(parce_argv({"123",""}) == Mod::normal);
-    assert(parce_argv({"-123","jfkfl"}) == Mod::normal);
-    assert(parce_argv({"0",""}) == Mod::normal);
+    assert(parce_argv({"-123","jfkfl"}) == Mod::miss_arg);
+    assert(parce_argv({"0",""}) == Mod::miss_arg);
 
     assert(parce_argv({"123","-bench_mark"}) == Mod::bench_mark);
     assert(parce_argv({"kfl","-bench_mark"}) == Mod::miss_arg);
@@ -80,6 +87,10 @@ void parce_argv_test()
     assert(parce_argv({"","-help"}) == Mod::miss_arg);
     assert(parce_argv({"123","-help"}) == Mod::normal);
     assert(parce_argv({"-help","jfjfn"}) == Mod::help);
+    assert(parce_argv({"-12","-none"}) == Mod::miss_arg);
+    assert(parce_argv({"0","-help"}) == Mod::miss_arg);
+    assert(parce_argv({"1","-help"}) == Mod::miss_arg);
+    assert(parce_argv({"2","-help"}) == Mod::miss_arg);
     cout << "End parce_argv_test"<<endl;
 }
 
@@ -203,7 +214,7 @@ void work_by_mode_test()
 
 }
 
-//#define DEBUG
+#define DEBUG
 
 /**
  * @brief main
