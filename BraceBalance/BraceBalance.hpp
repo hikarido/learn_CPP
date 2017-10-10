@@ -15,12 +15,19 @@ public:
 private:
     bool open_close_correct(char open, char close);
     bool is_open(char brace);
-    bool is_close(char brace) const;
+    bool is_close(char brace) const
+    {
+        if(std::regex_match(std::to_string(brace), close_braces))
+        {
+            return true;
+        }
+        return false;
+    }
 
     std::stack<char> store;
-    std::regex open_braces{"[|{|("};
-    std::regex close_braces{"]|}|)"};
-    std::regex correct_pairs{"[]|{}|()"};
+//    std::regex open_braces{"[|{|("};
+    std::regex close_braces{"[\}\)\]]"};
+//    std::regex correct_pairs{"[]|{}|()"};
 
     friend class BraceBalanceTest;
 };
