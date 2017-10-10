@@ -1,10 +1,8 @@
-#include <iostream>
-
-using namespace std;
+#include <BraceBalanceTest.hpp>
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    BraceBalanceTest tests{};
     return 0;
 }
 
