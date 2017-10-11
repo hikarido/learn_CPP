@@ -34,11 +34,38 @@ public:
     void is_close_test()
     {
         BraceBalance bb{};
-        string all_close = "]})";
 
         assert(bb.is_close('}') == true);
+        assert(bb.is_close('{') == false);
+
+        assert(bb.is_close(']') == true);
+        assert(bb.is_close('[') == false);
+
+        assert(bb.is_close(')') == true);
+        assert(bb.is_close('(') == false);
+
+        for(char i: opens)
+            assert(bb.is_close(i) == false);
+
+        for(char i: closes)
+            assert(bb.is_close(i) == true);
+
+        for(char i: chars_lower)
+            assert(bb.is_close(i) == false);
+
+        for(char i: chars_upper)
+            assert(bb.is_close(i) == false);
+
+        for(char i: numbers)
+            assert(bb.is_close(i) == false);
 
     }
+
+    string opens = "[({";
+    string closes = "]})";
+    string chars_lower = "qwertyuiopasdfghjklzxcvgnm";
+    string chars_upper = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    string numbers = "1234567890";
 };
 
 #endif
