@@ -23,6 +23,8 @@ public:
         is_close_test();
         cout << "is open test passing" << endl;
         is_open_test();
+        cout << "open close correct passing" << endl;
+        is_correct_pair();
     }
 
     ~BraceBalanceTest() = default;
@@ -91,6 +93,51 @@ public:
         for(char i: numbers)
             assert(bb.is_open(i) == false);
 
+    }
+
+    void is_correct_pair()
+    {
+        BraceBalance bb{};
+        assert(bb.open_close_correct('{','}') == true);
+        assert(bb.open_close_correct('[',']') == true);
+        assert(bb.open_close_correct('(',')') == true);
+
+        assert(bb.open_close_correct('{',']') == false);
+        assert(bb.open_close_correct('{',')') == false);
+
+        assert(bb.open_close_correct('[','}') == false);
+        assert(bb.open_close_correct('[',')') == false);
+
+        assert(bb.open_close_correct('(',']') == false);
+        assert(bb.open_close_correct('(','}') == false);
+
+        //other character pairs
+        //lower lower
+        for(char i: chars_lower)
+            for(auto end = chars_lower.cend() - 1;
+                end != chars_lower.cbegin();
+                end--)
+            {
+                assert(bb.open_close_correct(i,*end) == false);
+            }
+
+        //upper upper
+        for(char i: chars_upper)
+            for(auto end = chars_upper.cend() - 1;
+                end != chars_upper.cbegin();
+                end--)
+            {
+                assert(bb.open_close_correct(i,*end) == false);
+            }
+
+        //upper and lower
+        for(char i: chars_upper)
+            for(auto end = chars_lower.cend() - 1;
+                end != chars_lower.cbegin();
+                end--)
+            {
+                assert(bb.open_close_correct(i,*end) == false);
+            }
     }
 
     string opens = "[({";

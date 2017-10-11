@@ -13,7 +13,23 @@ public:
     bool check(const std::string & sentence);
 
 private:
-    bool open_close_correct(char open, char close);
+
+    /**
+     * @brief open_close_correct
+     * determine belongs of pair brace string(openclose) to set <{},[],()>
+     * @param open one of {([
+     * @param close one of }])
+     * @return true if yes, false other way
+     */
+    bool open_close_correct(char open, char close) const
+    {
+        std::string brace_pair = {open, close};
+        if(std::regex_match(brace_pair, correct_pairs))
+        {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @brief is_open
@@ -46,7 +62,7 @@ private:
     std::stack<char> store;
     std::regex open_braces{"[\\[\\{\\(]"};
     std::regex close_braces{"[\\]\\}\\)]"};
-//    std::regex correct_pairs{"[]|{}|()"};
+    std::regex correct_pairs{"\\[\\]|\\{\\}|\\(\\)"};
 
     friend class BraceBalanceTest;
 };
