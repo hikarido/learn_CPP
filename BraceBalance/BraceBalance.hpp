@@ -10,7 +10,52 @@ class BraceBalance{
 public:
     BraceBalance() = default;
     ~BraceBalance() = default;
-    bool check(const std::string & sentence);
+
+    /**
+     * @brief check
+     * In function passed string with characters sequence typicaly:
+     * {[23](133kdn)}
+     * 12*[3+4]
+     * 2*(3+8*[2+3])
+     * and more. Main character is braces. Other chars will ignored.
+     * Function check for each open brace corresponds each close brace or not.
+     * [1-2]*(1+3) correct
+     * [{(}] incorrect
+     * @param sentence
+     * @return
+     */
+    bool check(const std::string & sentence)
+    {
+        std::stack<char> store{};
+
+        for(char elem: sentence)
+        {
+            if(is_open(elem))
+            {
+                store.push((elem));
+                continue;
+            }
+
+            if(is_close(elem))
+            {
+                if(store.empty() == false &&
+                   open_close_correct(store.top(), elem))
+                {
+                    //occured close brase and it balansed wirh it open
+                    store.pop();
+                    continue;
+                }
+                else{
+                    //missmatch openclose balance
+                    return false;
+                }
+            }
+
+            //not brace character will ignored
+        }
+
+        return true;
+    }
 
 private:
 
@@ -59,7 +104,6 @@ private:
         return false;
     }
 
-    std::stack<char> store;
     std::regex open_braces{"[\\[\\{\\(]"};
     std::regex close_braces{"[\\]\\}\\)]"};
     std::regex correct_pairs{"\\[\\]|\\{\\}|\\(\\)"};

@@ -17,22 +17,54 @@ class BraceBalanceTest
 public:
     BraceBalanceTest()
     {
-        cout << "test 1 passing" << endl;
-        test_1();
+
         cout << "is close test passing" << endl;
         is_close_test();
         cout << "is open test passing" << endl;
         is_open_test();
         cout << "open close correct passing" << endl;
         is_correct_pair();
+        cout << "test balance passing" << endl;
+        test_balance();
     }
 
     ~BraceBalanceTest() = default;
 
-    void test_1()
+    void test_balance()
     {
+        BraceBalance bb{};
 
+        //true positive
+        assert(bb.check("") == true);
+        assert(bb.check(" ") == true);
+        assert(bb.check("1+2") == true);
 
+        assert(bb.check("[]") == true);
+        assert(bb.check("[]") == true);
+        assert(bb.check("{}") == true);
+        assert(bb.check("()") == true);
+
+        assert(bb.check("[[]]") == true);
+        assert(bb.check("[{}]") == true);
+        assert(bb.check("[()]") == true);
+
+        assert(bb.check("([])") == true);
+        assert(bb.check("({})") == true);
+        assert(bb.check("(())") == true);
+
+        assert(bb.check("{[]}") == true);
+        assert(bb.check("{()}") == true);
+        assert(bb.check("{{}}") == true);
+
+        assert(bb.check("[{}()[]]") == true);
+        assert(bb.check("{{}[]()}") == true);
+        assert(bb.check("([]{}())") == true);
+
+        assert(bb.check("^{John^}^{Tom^}") == true);
+        assert(bb.check("^{John^}^{Tom^} ^{Smith^}^{Jones^}") == true);
+        assert(bb.check("%^([a-z]+^) ^([a-z]+^), ^(*^), ^(*^), ^(*^), ^([0-9]+^)") == true);
+        assert(bb.check("([a-z 0-9.,]++^)^pcity = ^([a-z]+^)^pstate = ^([a-z]+^)^pzip = ^([0-9^-]+^)") == true);
+        assert(bb.check("[123]!@34$%^&*()") == true);
     }
 
     void is_close_test()
