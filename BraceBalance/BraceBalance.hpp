@@ -14,7 +14,26 @@ public:
 
 private:
     bool open_close_correct(char open, char close);
-    bool is_open(char brace);
+
+    /**
+     * @brief is_open
+     * determin belongs brace to set of <[{(> or not
+     * @return
+     */
+    bool is_open(char brace) const
+    {
+        if(std::regex_match(std::string(1, brace), open_braces))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @brief is_close
+     * determine belongs brace to set of <}])> or not
+     * @return
+     */
     bool is_close(char brace) const
     {
         if(std::regex_match(std::string(1, brace), close_braces))
@@ -25,7 +44,7 @@ private:
     }
 
     std::stack<char> store;
-//    std::regex open_braces{"[|{|("};
+    std::regex open_braces{"[\\[\\{\\(]"};
     std::regex close_braces{"[\\]\\}\\)]"};
 //    std::regex correct_pairs{"[]|{}|()"};
 

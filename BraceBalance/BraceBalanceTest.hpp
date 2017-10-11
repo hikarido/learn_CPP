@@ -21,6 +21,8 @@ public:
         test_1();
         cout << "is close test passing" << endl;
         is_close_test();
+        cout << "is open test passing" << endl;
+        is_open_test();
     }
 
     ~BraceBalanceTest() = default;
@@ -58,6 +60,36 @@ public:
 
         for(char i: numbers)
             assert(bb.is_close(i) == false);
+
+    }
+
+    void is_open_test()
+    {
+        BraceBalance bb{};
+
+        assert(bb.is_open('}') == false);
+        assert(bb.is_open('{') == true);
+
+        assert(bb.is_open('[') == true);
+        assert(bb.is_open(']') == false);
+
+        assert(bb.is_open('(') == true);
+        assert(bb.is_open(')') == false);
+
+        for(char i: opens)
+            assert(bb.is_open(i) == true);
+
+        for(char i: closes)
+            assert(bb.is_open(i) == false);
+
+        for(char i: chars_lower)
+            assert(bb.is_open(i) == false);
+
+        for(char i: chars_upper)
+            assert(bb.is_open(i) == false);
+
+        for(char i: numbers)
+            assert(bb.is_open(i) == false);
 
     }
 
