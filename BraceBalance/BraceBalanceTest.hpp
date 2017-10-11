@@ -65,6 +65,28 @@ public:
         assert(bb.check("%^([a-z]+^) ^([a-z]+^), ^(*^), ^(*^), ^(*^), ^([0-9]+^)") == true);
         assert(bb.check("([a-z 0-9.,]++^)^pcity = ^([a-z]+^)^pstate = ^([a-z]+^)^pzip = ^([0-9^-]+^)") == true);
         assert(bb.check("[123]!@34$%^&*()") == true);
+
+
+        //false positive
+        assert(bb.check("[") == false);
+        assert(bb.check("]") == false);
+        assert(bb.check("{") == false);
+        assert(bb.check("}") == false);
+        assert(bb.check("(") == false);
+        assert(bb.check(")") == false);
+
+        assert(bb.check("((") == false);
+        assert(bb.check("))") == false);
+        assert(bb.check(")(") == false);
+
+        assert(bb.check("{{") == false);
+        assert(bb.check("}}") == false);
+        assert(bb.check("}{") == false);
+
+        assert(bb.check("[[") == false);
+        assert(bb.check("]]") == false);
+        assert(bb.check("][") == false);
+
     }
 
     void is_close_test()

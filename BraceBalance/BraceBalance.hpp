@@ -54,6 +54,10 @@ public:
             //not brace character will ignored
         }
 
+        //opens brace not have related closed brace
+        if(store.empty() == false)
+            return false;
+
         return true;
     }
 
