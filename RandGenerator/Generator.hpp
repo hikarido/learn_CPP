@@ -59,7 +59,12 @@ private:
      * @brief next_shift
      * @return
      */
-    int next_shift();
+    void next_shift()
+    {
+        if(shift == 5)
+            shift = 0;
+        else shift+=1;
+    }
 
     array<array<int, 6>, 6> matrix = {{                 //i am don't know
                                       {{0,1,2,3,4,5}},  //why but compiler
@@ -73,6 +78,7 @@ private:
     int shift = 0;
     int node = 0;
 
+    friend void Generator_test( );
 };
 
 #endif //GENERATOR_HPP
