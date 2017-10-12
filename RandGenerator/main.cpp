@@ -18,9 +18,11 @@ void Generator_test()
     g.next_shift();assert(g.shift == 5);
     g.next_shift();assert(g.shift == 0);
 
+    g.shift = 2;
+    g.node = 4;
 
-
-
+    for(int i{}; i < 100; i++)
+        cout << g.gen() << " ";
 }
 
 int main()
