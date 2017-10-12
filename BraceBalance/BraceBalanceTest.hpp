@@ -91,7 +91,15 @@ public:
         assert(bb.check("[(])") == false);
         assert(bb.check("[{]}") == false);
 
-        //assert(bb.check("") == false);
+        assert(bb.check("{[}]") == false);
+        assert(bb.check("{(})") == false);
+
+        assert(bb.check("([)]") == false);
+        assert(bb.check("({)}") == false);
+
+        assert(bb.checks("{[({[(]{)})]}") == false);
+
+
 
     }
 
