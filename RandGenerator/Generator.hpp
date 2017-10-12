@@ -38,7 +38,7 @@ public:
      * @brief print
      * print current state of Generator
      */
-    void print()
+    void print() const
     {
         cout <<"Generator" << endl;
         cout << "shift: " << shift <<endl;
