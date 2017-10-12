@@ -29,7 +29,7 @@ public:
 
     /**
      * @brief gen
-     * generate next number belong {0,1,2,3,4,5,6}
+     * generate next number belong {0,1,2,3,4,5}
      * @return
      */
     int gen()
