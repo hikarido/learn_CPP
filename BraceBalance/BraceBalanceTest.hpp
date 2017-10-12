@@ -87,6 +87,12 @@ public:
         assert(bb.check("]]") == false);
         assert(bb.check("][") == false);
 
+        //balansed but position error
+        assert(bb.check("[(])") == false);
+        assert(bb.check("[{]}") == false);
+
+        //assert(bb.check("") == false);
+
     }
 
     void is_close_test()
