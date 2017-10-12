@@ -11,6 +11,15 @@ void Generator_test()
     assert(g.shift == 0);
     assert(g.node == 0);
 
+    g.next_shift();assert(g.shift == 1);
+    g.next_shift();assert(g.shift == 2);
+    g.next_shift();assert(g.shift == 3);
+    g.next_shift();assert(g.shift == 4);
+    g.next_shift();assert(g.shift == 5);
+    g.next_shift();assert(g.shift == 0);
+
+
+
 
 }
 
