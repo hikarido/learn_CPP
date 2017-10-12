@@ -73,12 +73,12 @@ private:
     }
 
     array<array<int, 6>, 6> matrix = {{                 //i am don't know
-                                      {{0,1,2,3,4,5}},  //why but compiler
-                                      {{1,2,3,4,5,0}},  //gcc 4.9 -std=c++1y
-                                      {{2,3,4,5,0,1}},  //required this extra
-                                      {{3,4,5,0,1,2}},  //braces
-                                      {{4,5,0,1,2,3}},  //but in docs said
-                                      {{5,0,1,2,3,4}}   //what in c++14 it
+                                      {{0,3,0,5,0,5}},  //why but compiler
+                                      {{1,4,1,3,4,0}},  //gcc 4.9 -std=c++1y
+                                      {{2,5,2,1,5,1}},  //required this extra
+                                      {{3,1,3,4,1,4}},  //braces
+                                      {{4,2,4,0,2,2}},  //but in docs said
+                                      {{5,3,5,2,3,3}}   //what in c++14 it
                                      }};                //not needed
 
     int shift = 0;
