@@ -32,7 +32,13 @@ public:
      * generate next number belong {0,1,2,3,4,5,6}
      * @return
      */
-    int gen();
+    int gen()
+    {
+        int ret = node;
+        node = matrix[node][shift];
+        next_shift();
+        return ret;
+    }
 
     /**
      * @brief print
@@ -61,9 +67,9 @@ private:
      */
     void next_shift()
     {
-        if(shift == 5)
+        shift += 1;
+        if(shift ==  6)
             shift = 0;
-        else shift+=1;
     }
 
     array<array<int, 6>, 6> matrix = {{                 //i am don't know
