@@ -13,6 +13,7 @@ using namespace std;
  * =======
  * not polindroms: "hello","123jji321", "keks", " ", "", "a"
  * polindroms: "223heh322", "kak"
+ * if word contain escape sequence or back slash return false
  * @pram word supposed polindrom
  * @return true if word is polindrom
  */
