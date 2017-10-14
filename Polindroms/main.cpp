@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cassert>
-
+#include <algorithm>
 using namespace std;
 
 /**
@@ -20,6 +20,10 @@ bool is_word_polindrom(const string & word)
 {
     // ""
     if(word.empty())
+        return false;
+
+    //contains escape sequence
+    if(find(word.cbegin(), word.cend(), '\\') != word.cend())
         return false;
 
     // one  character
@@ -64,8 +68,12 @@ void is_word_polindrom_test()
     assert(is_word_polindrom("aba") == true);
     assert(is_word_polindrom("abba") == true);
     assert(is_word_polindrom("abcba") == true);
-    assert(is_word_polindrom("-1\/1-") == true);
-//    assert(is_word_polindrom("-1\|/1-") == true); <-- here faild
+
+    //input word with '\'
+    cout << "Enter word contained '\\' character" << endl;
+    string in;
+    cin >> in;
+    assert(is_word_polindrom(in) == false);
 
 }
 
