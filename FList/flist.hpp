@@ -44,16 +44,25 @@ private:
     class Node
     {
     public:
-        Node(string &val):value(val){}
+        explicit Node(const string &val):value(val){}
         ~Node()
         {
             next = nullptr;
         }
+
+        Node(const Node & other) = delete;
+        Node & operator=(const Node & other) = delete;
+
+        Node(Node && other) = delete;
+        Node & operator=(Node && other) = delete;
+
         string value{};
         Node * next = nullptr;
     };
 
+private:
     Node * head = nullptr;
+    friend class flist_test;
 
 };
 
