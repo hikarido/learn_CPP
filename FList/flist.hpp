@@ -31,6 +31,13 @@ class flist{
 public:
     flist() = default;
     ~flist() = default;
+
+    flist(const flist & other) = delete;
+    flist & operator=(const flist & other) = delete;
+
+    flist(flist && other) = delete;
+    flist & operator=(flist && other) = delete;
+
     bool insert(string & val);
     bool remove(string & val);
     friend std::ostream& operator<<(std::ostream & out,
