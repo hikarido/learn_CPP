@@ -37,7 +37,22 @@ public:
                                     const flist & obj);
 
 private:
-    class Node;
+    /**
+     *@brief Node
+     * determine list element
+     */
+    class Node
+    {
+    public:
+        Node(string &val):value(val){}
+        ~Node()
+        {
+            next = nullptr;
+        }
+        string value{};
+        Node * next = nullptr;
+    };
+
     Node * head = nullptr;
 
 };
