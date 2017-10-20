@@ -39,12 +39,19 @@ public:
     {
 
         flist l{};
-        l.insert(string("hello"));
+        l.insert("b");
+        l.insert("a");
+        assert(l.head->value == "a");
+        assert(l.head->next->value == "b");
+        l.insert("c");
+//        assert(l.head->next->next->value == "c");
+
         cout << l;
 
         flist l2{};
         l2.insert("hero");
         assert(l2.head->value == "hero");
+
 
     }
 };

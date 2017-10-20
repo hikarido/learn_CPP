@@ -48,13 +48,43 @@ public:
             return true;
         }
 
+        //front insertation
+        if(head->value > val)
+        {
+            Node * in =  new Node(val);
+            in->next = head;
+            head = in;
+            return true;
+        }
+
+        //find position to insert
+        Node * cur = head;
+        Node * prev = head;
+        while(cur->value < val || cur->next != nullptr)
+        {
+             prev = cur;
+             cur = cur->next;
+        }
+
+        //insertatio
+//        if(cur->next == nullptr)
+//        {
+//            cur->next = new Node(val);
+//            return true;
+//        }
     }
 
     bool remove(string & val);
     friend std::ostream& operator<<(std::ostream & out,
                                     const flist & obj)
     {
-        cout << endl << "[";
+        if(obj.head == nullptr)
+        {
+            out << endl << "[]" << endl;
+            return out;
+        }
+
+        out << endl << "[";
         auto current = obj.head;
         while(current->next != nullptr)
         {
@@ -62,10 +92,10 @@ public:
             current = current->next;
         }
 
-        cout << current->value;
-        cout << "]"<<endl;
+        out << current->value;
+        out << "]"<<endl;
 
-
+        return out;
     }
 
 private:
