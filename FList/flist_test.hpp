@@ -12,13 +12,17 @@ class flist_test{
 public:
     flist_test()
     {
+        cout << "test" << endl;
         create_test();
         Node_subclass_test();
+        insert_test();
+        cout << "end" << endl;
     }
 
     void create_test()
     {
         flist l{};
+        flist r{};
         assert(l.head == nullptr);
     }
 
@@ -28,6 +32,19 @@ public:
         flist::Node node(s);
         assert(node.next == nullptr);
         assert(node.value == "hello");
+
+    }
+
+    void insert_test()
+    {
+
+        flist l{};
+        l.insert(string("hello"));
+        cout << l;
+
+        flist l2{};
+        l2.insert("hero");
+        assert(l2.head->value == "hero");
 
     }
 };

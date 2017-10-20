@@ -4,6 +4,8 @@
 #include <string>
 
 using std::string;
+using std::endl;
+using std::cout;
 
 /**
  * @brief The flist class
@@ -38,10 +40,33 @@ public:
     flist(flist && other) = delete;
     flist & operator=(flist && other) = delete;
 
-    bool insert(string & val);
+    bool insert(const string && val)
+    {
+        if(head == nullptr)
+        {
+            head = new Node(val);
+            return true;
+        }
+
+    }
+
     bool remove(string & val);
     friend std::ostream& operator<<(std::ostream & out,
-                                    const flist & obj);
+                                    const flist & obj)
+    {
+        cout << endl << "[";
+        auto current = obj.head;
+        while(current->next != nullptr)
+        {
+            out << current->value << ", ";
+            current = current->next;
+        }
+
+        cout << current->value;
+        cout << "]"<<endl;
+
+
+    }
 
 private:
     /**

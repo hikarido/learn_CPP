@@ -4,7 +4,7 @@
 int main()
 {
 
-    flist_test test();
+    flist_test test{};
     return 0;
 }
 
