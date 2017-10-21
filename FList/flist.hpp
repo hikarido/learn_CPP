@@ -40,6 +40,14 @@ public:
     flist(flist && other) = delete;
     flist & operator=(flist && other) = delete;
 
+    /**
+     * @brief insert
+     * insert element in list. List will
+     *  filled in lexicographics order.
+     * Dublicates will excluded and function return false
+     * @param val
+     * @return if element was added return true
+     */
     bool insert(const string && val)
     {
         if(head == nullptr)
