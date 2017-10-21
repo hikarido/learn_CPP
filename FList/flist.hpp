@@ -48,30 +48,41 @@ public:
             return true;
         }
 
-        //front insertation
-        if(head->value > val)
+        Node * prv = head;
+        Node * cur = head;
+
+        //search place where val
+        //will be inserted
+        while(cur != nullptr)
         {
-            Node * in =  new Node(val);
-            in->next = head;
-            head = in;
+            if(cur->value > val)
+            {
+                break;
+            }
+
+            prv = cur;
+            cur = cur->next;
+        }
+
+        if(cur == head)         //insert to begin
+        {
+            auto ins = new Node(val);
+            ins->next = head;
+            head = ins;
             return true;
         }
 
-        //find position to insert
-        Node * cur = head;
-        Node * prev = head;
-        while(cur->value < val || cur->next != nullptr)
+        if(cur == nullptr)      //insert to end
         {
-             prev = cur;
-             cur = cur->next;
+            prv->next = new Node(val);
+            return true;
         }
 
-        //insertatio
-//        if(cur->next == nullptr)
-//        {
-//            cur->next = new Node(val);
-//            return true;
-//        }
+        auto ins = new Node(val);       //insert between elements
+        ins->next = cur;
+        prv->next = ins;
+        return true;
+
     }
 
     bool remove(string & val);

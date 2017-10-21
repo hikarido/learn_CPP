@@ -43,14 +43,54 @@ public:
         l.insert("a");
         assert(l.head->value == "a");
         assert(l.head->next->value == "b");
+        l.insert("1");
+        assert(l.head->value == "1");
+        assert(l.head->next->value == "a");
+        assert(l.head->next->next->value == "b");
+        l.insert("15");
+        l.insert("5");
+        l.insert("3");
         l.insert("c");
-//        assert(l.head->next->next->value == "c");
 
         cout << l;
 
-        flist l2{};
-        l2.insert("hero");
-        assert(l2.head->value == "hero");
+        //create empty
+        {
+            flist l{};
+            assert(l.head == nullptr);
+        }
+
+        //insert in empty
+        {
+            flist l{};
+            l.insert("a");
+            assert(l.head->value == "a");
+        }
+
+        //insert to begin
+        {
+            flist l{};
+            l.insert("a");
+            l.insert("0");
+            assert(l.head->value == "0");
+        }
+
+        //insert to end
+        {
+            flist l{};
+            l.insert("a");
+            l.insert("b");
+            assert(l.head->next->value == "b");
+        }
+
+        //insert between begin and end
+        {
+            flist l{};
+            l.insert("a");
+            l.insert("c");
+            l.insert("b");
+            assert(l.head->next->value == "b");
+        }
 
 
     }
