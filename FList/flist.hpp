@@ -98,7 +98,57 @@ public:
 
     }
 
-    bool remove(string & val);
+    /**
+     * @brief remove
+     * delete value from  list
+     * @param val
+     * @return true if deletion was sucessed
+     *         false if deletion was not sucessed: val not exist in list
+     *         or list is empty
+     */
+    bool remove(const string && val)
+    {
+        if(head == nullptr)
+        {
+            return false;
+        }
+
+        auto prv = head;
+        auto cur = head;
+
+        while(cur != nullptr)
+        {
+            if(cur->value == val)
+            {
+                break;
+            }
+
+            prv = cur;
+            cur = cur->next;
+        }
+
+        //val not exist
+        if(cur == nullptr)
+        {
+            return false;
+        }
+
+        //remove head
+        if(cur == head)
+        {
+            cur = head->next;
+            delete head;
+            head = cur;
+            return true;
+        }
+
+        auto removed = cur;
+        prv->next = cur->next;
+        removed->next = nullptr;
+        delete removed;
+        return true;
+    }
+
     friend std::ostream& operator<<(std::ostream & out,
                                     const flist & obj)
     {

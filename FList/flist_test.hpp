@@ -16,6 +16,7 @@ public:
         create_test();
         Node_subclass_test();
         insert_test();
+        remove_test();
         cout << "end" << endl;
     }
 
@@ -105,8 +106,30 @@ public:
             assert(l.head->next->value == "b");
             assert(l.head->next->next == nullptr);
         }
+    }
+
+    void remove_test()
+    {
+        {
+            flist l{};
+            l.insert("b");
+            l.insert("c");
+            l.insert("a");
+            l.insert("d");
+            l.insert("e");
+
+            assert(l.remove("e") == true);
+            assert(l.remove("a") == true);
+            assert(l.remove("c") == true);
+            assert(l.remove("val") == false);
+            assert(l.remove("d") == true);
+            assert(l.remove("b") == true);
+            assert(l.remove("b") == false);
+
+            cout << l;
 
 
+        }
     }
 };
 
