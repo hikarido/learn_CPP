@@ -48,8 +48,8 @@ public:
             return true;
         }
 
-        Node * prv = head;
-        Node * cur = head;
+        Node * prv = head;  //previos element of current pointed element
+        Node * cur = head;  //current pointed element
 
         //search place where val
         //will be inserted
@@ -62,6 +62,11 @@ public:
 
             prv = cur;
             cur = cur->next;
+        }
+
+        if(prv->value == val)   //dublicates  cheking
+        {
+            return false;
         }
 
         if(cur == head)         //insert to begin

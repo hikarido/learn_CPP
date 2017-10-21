@@ -92,6 +92,20 @@ public:
             assert(l.head->next->value == "b");
         }
 
+        //dublicate check
+        {
+            flist l{};
+            l.insert("a");
+            l.insert("a");
+            l.insert("b");
+            l.insert("a");
+            l.insert("b");
+            l.insert("a");
+            assert(l.head->value == "a");
+            assert(l.head->next->value == "b");
+            assert(l.head->next->next == nullptr);
+        }
+
 
     }
 };
