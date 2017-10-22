@@ -196,6 +196,52 @@ private:
         Node * next = nullptr;
     };
 
+    /**
+     * @brief operator ==
+     * perform comporision two flist class instance
+     * [] == [] true
+     * [1,2,3] == [1,2,3] true
+     * [1,2,3] == [1,2,3,4] false
+     * [3,2,1] == [1,2,3] false
+     *
+     * @param other
+     * @return
+     */
+    bool operator==(const flist & other) const
+    {
+        Node * first = head;
+        Node * second = other.head;
+
+        //empty equal
+        if(first == nullptr && second == nullptr)
+            return true;
+
+        //self equal
+        if(first == second)
+            return true;
+
+        //empty one of
+        if((first && second) == false)
+            return false;
+
+        //check contents equalation
+        while(first && second)
+        {
+            if(first->value != second->value)
+                return false;
+
+            first = first->next;
+            second = second->next;
+        }
+
+        //first and second pointed to end of list
+        if((first == nullptr) &&
+           (second == nullptr))
+            return true;
+
+        return false;
+    }
+
 private:
     Node * head = nullptr;
     friend class flist_test;

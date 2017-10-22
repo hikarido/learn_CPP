@@ -17,6 +17,7 @@ public:
         Node_subclass_test();
         insert_test();
         remove_test();
+        equal_test();
         cout << "end" << endl;
     }
 
@@ -131,6 +132,69 @@ public:
 
         }
     }
+
+   void equal_test()
+   {
+       //empty equal
+       {
+           flist l{};
+           flist r{};
+
+           assert(l == r);
+           assert(r == l);
+       }
+
+       //self equal
+       {
+            flist l{};
+            assert(l == l);
+       }
+
+       //empty one of
+       {
+           flist l{};
+           l.insert("a");
+           flist empty{};
+
+           assert(!(l == empty));
+           assert(!(empty == l));
+       }
+
+       //content equal
+       {
+           flist l{};
+           flist s{};
+
+           l.insert("1");
+
+           assert(!(s == l));
+           assert(!(l == s));
+
+           s.insert("1");
+
+           assert(s == l);
+           assert(l == s);
+
+           l.insert("2");
+
+           assert(!(l == s));
+           assert(!(s == l));
+
+           s.insert("2");
+           assert(s == l);
+           assert(l == s);
+
+           l.insert("3");
+
+           assert(!(l == s));
+           assert(!(s == l));
+
+           s.insert("3");
+
+           assert(s == l);
+           assert(l == s);
+       }
+   }
 };
 
 #endif //FLIST_TEST_HPP
