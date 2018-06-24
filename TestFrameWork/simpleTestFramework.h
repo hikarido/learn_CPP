@@ -61,23 +61,40 @@ void Assert(bool expect_true, const string & hint = "NONE"){
 	AssertEqual(expect_true, true, hint);
 }
 
-/**
- * Среда для запуска тестовых функций
- * Ловит исключения при выстреле тестов и позволяет выполнить все тесты
- * Что бы определить совокупность рабочего и не рабочего кода согласно тестам
- * @tparam FunctionAgregatedTestFunction некая функция которая в себе исполняет одну и более тестовых функций
- * @param test тестовая функци
- * @param test_name std::string имя теста
- */
-template<typename FunctionAgregatedTestFunction>
-void RunTest(FunctionAgregatedTestFunction test, const string & test_name){
-	try{
-		test();
-		cerr << "Test " << test_name << " " << pass_correct << endl;
-	} catch(runtime_error & test_exception){
-		cerr << "Test " << test_name << " " << pass_failed << " " << test_exception.what();
+
+class TestRunner{
+
+public:
+	/**
+	 * Среда для запуска тестовых функций
+	 * Ловит исключения при выстреле тестов и позволяет выполнить все тесты
+	 * Что бы определить совокупность рабочего и не рабочего кода согласно тестам
+	 * @tparam FunctionAgregatedTestFunction некая функция которая в себе исполняет одну и более тестовых функций
+	 * @param test тестовая функци
+	 * @param test_name std::string имя теста
+	 */
+	template<typename FunctionAgregatedTestFunction>
+	void RunTest(FunctionAgregatedTestFunction test, const string & test_name){
+		try{
+			test_count += 1;
+			test();
+			cerr << "Test " << test_name << " " << pass_correct << endl;
+		} catch(runtime_error & test_exception){
+			failed_tests_count += 1;
+			cerr << "Test " << test_name << " " << pass_failed << " " << test_exception.what();
+		}
 	}
-}
+	~TestRunner(){
+		if(failed_tests_count > 0){
+			cerr << pass_correct << ": " << test_count << endl << pass_failed << ": " << failed_tests_count << endl;
+			exit(1);
+		}
+	}
+
+private:
+	int failed_tests_count = 0;
+	int test_count = 0;
+};
 
 
 

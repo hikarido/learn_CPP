@@ -17,13 +17,14 @@ void test_map_equals(){
 void correct_test(){
 	Assert(true, "yes that is");
 }
+void testAll(){
+	TestRunner tr;
 
+	tr.RunTest(test_1, "test_1");
+	tr.RunTest(test_map_equals, "test_map_equals");
+	tr.RunTest(correct_test, "correct_test");
+}
 int main(){
-	RunTest(test_1, "test_1");
-	RunTest(test_map_equals, "test_map_equals");
-	RunTest(correct_test, "correct_test");
-//	int a = 3;
-//	int b = 4;
-//	AssertEqual(3,4, "test 1");
+	testAll();
 	return 0;
 }
