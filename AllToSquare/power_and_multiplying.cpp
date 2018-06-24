@@ -1,9 +1,6 @@
 //
 // Created by hikarido on 6/24/18.
-// Программа возводящая переданный аргумент в квадрат
-
-
-#include "print_utils.cpp"
+//
 
 // Section implementation of multipliction
 
@@ -282,10 +279,3 @@ void test_power_and_multiply(){
 	test_collection_multiplying();
 }
 // End section for testing implementation of multiply
-
-
-int main(int argc, char *argv[]){
-	test_power_and_multiply();
-	return 0;
-}
-

@@ -16,9 +16,10 @@
 Структура проекта
 .
 ├── CMakeLists.txt
-├── main.cpp                точка входа
-├── print_utils.cpp         утилиты для отображения вектора, пары и карты, так же тест для нимх,
-│                           @see execute_test_printing_section
-└── README                  описание
+├── main.cpp                    точка входа
+├── print_utils.cpp             утилиты для отображения вектора, пары и карты, так же тест для нимх,
+│                               @see execute_test_printing_section
+├── power_and_multiplying.cpp   возведение в квадрат коллекций и тесты @see test_power_and_multiply
+└── README                      описание
 
 
