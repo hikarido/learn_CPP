@@ -18,8 +18,7 @@ void correct_test(){
 	Assert(true, "yes that is");
 }
 void testAll(){
-	TestRunner tr;
-
+	TestRunner tr{};
 	tr.RunTest(test_1, "test_1");
 	tr.RunTest(test_map_equals, "test_map_equals");
 	tr.RunTest(correct_test, "correct_test");
