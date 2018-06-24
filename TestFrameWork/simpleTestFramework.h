@@ -6,7 +6,7 @@
 // тестовые функции должны использовать Assert and EqualAssert
 // запускайте тестовые функции по средствам TestRunner.RunTest
 // наслаждайтесь.
-// Возможна не корректная работа при выводе ошибок ознакомьтесь с возможностями printFramework.h
+// Возможна некорректная работа при выводе ошибок ознакомьтесь с возможностями printFramework.h
 
 
 #ifndef ALLTOSQUARE_SIMPLETESTFRAMEWORK_H
@@ -32,10 +32,10 @@ const string pass_failed = "FAILED";
  * Проверка на эквивалентность двух выражений
  * Ожидается, что expect == exist, если это не  так то выполняется оповещение о том, то
  * ожидание расходится с реальностью
- * @tparam Expect must have oprator !=
+ * @tparam Expect must have operator !=
  * @tparam Exist  must have operator !=
- * @param expect значение ожидаемое
- * @param exist значение предоставленное, в сравнение к ожижаемому
+ * @param expect ожидаемое значение
+ * @param exist значение предоставленное, в сравнение к ожидаемому
  * @param hint std::string unique description for more detalisation, default = "NONE"
  *
  * Бросает исключение std::runtime_error если тест выстрелил
@@ -52,12 +52,12 @@ void AssertEqual(const Expect & expect, const Exist & exist, const string & hint
 /**
  * Замена для стандартного assert
  * ожидается что expect_true == true
- * если это не так то возбуждается исключение и отрабатывает вывод инфррмации
+ * если это не так то возбуждается исключение и отрабатывает вывод информации
  * о расхождении с ожидаемым результатом
- * @param expect_true bool результат выполнения какого либо выражения
+ * @param expect_true bool результат выполнения какого-либо выражения
  * @param hint string уникальное название теста выводится в блоке HINT, default = "NONE"
  *
- * Бросае исключение std::runtime_error если тест выстрелил
+ * Бросает исключение std::runtime_error если тест выстрелил
  */
 void Assert(bool expect_true, const string & hint = "NONE"){
 	AssertEqual(expect_true, true, hint);
@@ -68,7 +68,7 @@ void Assert(bool expect_true, const string & hint = "NONE"){
  * используйте RunTest для запуска функций использующих Assert and EqualAssert
  * @see RunTest for details
  *
- * При унитожении выводит статитику тестирования
+ * При уничтожении выводит статистику тестирования
  *
  * EXAMPLE:
  *
@@ -125,9 +125,11 @@ public:
 
 	/**
 	 * Среда для запуска тестовых функций
-	 * Ловит исключения при выстреле тестов и позволяет выполнить все тесты
+	 * Ловит исключения при выстреле тестов и позволяет выполнить все тесты до конца
 	 * Что бы определить совокупность рабочего и не рабочего кода согласно тестам
-	 * @tparam FunctionAgregatedTestFunction некая функция которая в себе исполняет одну и более тестовых функций
+	 * @tparam FunctionAgregatedTestFunction некая функция которая выполняет в себе вызовы
+	 * * Assert
+	 * * EqualAssert
 	 * @param test тестовая функци
 	 * @param test_name std::string имя теста
 	 */

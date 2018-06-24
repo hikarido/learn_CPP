@@ -3,9 +3,9 @@
 // Данный модуль реализует форматированный вывод структур данных С++
 // Возвожности:
 // Вывод:
-// * std::pair (first, second)
-// * std::vector [el0, el1, ..., elN]
-// * std::map {pair0, pair1, ..., pairN} where pairI is std::pair formatted output
+// * std::pair as (first, second)
+// * std::vector as [el0, el1, ..., elN]
+// * std::map as {pair0, pair1, ..., pairN} where pairI is std::pair formatted output
 
 #ifndef SIMPLETESTFRAMEWORK_PRINTFRAMEWORK_H
 #define SIMPLETESTFRAMEWORK_PRINTFRAMEWORK_H
