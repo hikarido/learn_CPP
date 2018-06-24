@@ -9,6 +9,8 @@
 #include <exception>
 #include <string>
 
+#include "printFramework.h"
+
 using std::ostringstream;
 using std::runtime_error;
 using std::string;
