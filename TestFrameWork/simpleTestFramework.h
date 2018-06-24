@@ -21,7 +21,7 @@ using std::ostringstream;
 using std::runtime_error;
 using std::string;
 using std::endl;
-using std::cout;
+using std::cerr;
 
 const string pass_correct = "PASS";
 const string pass_failed = "FAILED";
@@ -73,9 +73,9 @@ template<typename FunctionAgregatedTestFunction>
 void RunTest(FunctionAgregatedTestFunction test, const string & test_name){
 	try{
 		test();
-		cout << "Test " << test_name << " " << pass_correct << endl;
+		cerr << "Test " << test_name << " " << pass_correct << endl;
 	} catch(runtime_error & test_exception){
-		cout << "Test " << test_name << " " << pass_failed << " " << test_exception.what();
+		cerr << "Test " << test_name << " " << pass_failed << " " << test_exception.what();
 	}
 }
 
