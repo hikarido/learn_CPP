@@ -1,0 +1,7 @@
+project(AllTosquare)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+SET(CMAKE_CXX_STANDARD  11)
+ADD_COMPILE_OPTIONS(-stdc++1y)
+ADD_EXECUTABLE(all_to_square main.cpp)
+
+
