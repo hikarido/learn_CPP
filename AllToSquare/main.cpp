@@ -117,14 +117,18 @@ void test_join(){
 	assert(join(m, ';') == "(0, zero);(1, one);(2, two)");
 
 }
-// end test print section
-// end printting function section
 
-int main(int argc, char *argv[]){
+void execute_test_printing_section(){
 	test_print_pair();
 	test_join();
 	test_print_vector();
 	test_print_map();
+}
+// end test print section
+// end printting function section
+
+int main(int argc, char *argv[]){
+	execute_test_printing_section();
 	return 0;
 }
 
