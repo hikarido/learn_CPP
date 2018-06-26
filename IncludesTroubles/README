@@ -1,0 +1,59 @@
+Изучение того как компилятор работает с директивой include
+
+Linking:
+
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $ clang-5.0 -c main.cpp some_source.cpp
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $ ls
+CMakeLists.txt  main.cpp  main.o  some_header.h  some_source.cpp  some_source.o
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $ clang-5.0 main.o some_source.o -o prog
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $ ls
+CMakeLists.txt  main.cpp  main.o  prog  some_header.h  some_source.cpp  some_source.o
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $ ./prog
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $
+
+
+Includes result on clang
+
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $ clang-5.0 -E main.cpp
+# 1 "main.cpp"
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 342 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "main.cpp" 2
+
+
+
+
+# 1 "./some_header.h" 1
+
+
+
+
+
+
+
+int add(int a, int b);
+# 6 "main.cpp" 2
+
+# 1 "./prag_once.h" 1
+
+
+
+
+
+
+int fn(){
+ return 4;
+}
+# 8 "main.cpp" 2
+
+
+
+int main(){
+ add(1,2);
+ return 0;
+}
+hikarido@pechka ~/CLionProjects/learn_CPP/IncludesTroubles $
+
