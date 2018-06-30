@@ -1,0 +1,35 @@
+Я так и не понял почему, если использовать cmake то выполняется тест только в test-main
+а если собирать при помощи компилятора то всё работает
+
+Хотя ребята заверяют, то тесты должны выполняться
+https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md#scaling-up
+https://github.com/catchorg/Catch2/blob/master/examples/020-TestCase-1.cpp
+
+// 020-TestCase-1.cpp
+
+// In a Catch project with multiple files, dedicate one file to compile the
+// source code of Catch itself and reuse the resulting object file for linking.
+
+// Let Catch provide main():
+#define CATCH_CONFIG_MAIN
+
+#include <catch2/catch.hpp>
+
+TEST_CASE( "1: All test cases reside in other .cpp files (empty)", "[multi-file:1]" ) {
+}
+
+// ^^^
+// Normally no TEST_CASEs in this file.
+// Here just to show there are two source files via option --list-tests.
+
+
+Так что я собираю так
+ $ g++ -std=c++11 -c tests-main.cpp
+ $ g++ -std=c++11 -c pchheader.cpp
+ $ g++ -std=c++11 -c CourseraNearestTask.cpp
+ $ g++ -std=c++11 -c tests-CourseraNearestTask.cpp
+ $ g++ tests-main.o tests-CourseraNearestTask.o  CourseraNearestTask.o pchheader.o
+ $ ./a.out
+
+ так что остановился в 3 часа ночи ибо курил С++, в пришловь Cmake
+
