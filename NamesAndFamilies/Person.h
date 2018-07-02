@@ -19,8 +19,9 @@ public:
 private:
 	std::map<int, std::string> first_name_history;
 	std::map<int, std::string> last_name_history;
-
+	std::string empty_text_value = "";
 	std::string searchChangesInYear(int year, const std::map<int, std::string> & names) const;
+	std::string generateOutputString(const std::string & first_name,const std::string & last_name) const;
 };
 
 
