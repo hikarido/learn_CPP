@@ -15,11 +15,12 @@ public:
 	void changeFirstName(int year, const std::string & name);
 	void changeLastName(int year, const std::string & name);
 	std::string getFullName(int year) const;
+
 private:
 	std::map<int, std::string> first_name_history;
 	std::map<int, std::string> last_name_history;
 
-
+	std::string searchChangesInYear(int year, const std::map<int, std::string> & names) const;
 };
 
 
