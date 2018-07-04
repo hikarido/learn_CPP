@@ -27,7 +27,7 @@ struct Orange: Fruit{
 
 class Animal{
 public:
-	void Eat(const Fruit& fruit){
+	void Eat(const Fruit& fruit) const{
 		cout << type << " was eated the " << fruit.name << endl;
 	}
 	string type = "animal";
@@ -47,21 +47,25 @@ public:
 	}
 };
 
+void doMeal(const Animal & entity, const Fruit & eat){
+	entity.Eat(eat);
+}
+
 int main(){
 	Animal a{};
 	Apple ap{};
 	Orange o{};
-	a.Eat(ap);
-	a.Eat(o);
 
+
+	doMeal(a, ap);
+	doMeal(a, o);
 
 	Dog d{};
+	doMeal(d, ap);
+	doMeal(d, o);
+
 	Cat c{};
-
-	d.Eat(o);
-	d.Eat(ap);
-
-	c.Eat(o);
-	c.Eat(ap);
+	doMeal(c, ap);
+	doMeal(c, o);
 	return 0;
 }
