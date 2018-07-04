@@ -27,24 +27,27 @@ struct Orange: Fruit{
 
 class Animal{
 public:
+
+	Animal(const string & type = "animal"):
+	type(type)
+	{}
+
 	void Eat(const Fruit& fruit) const{
 		cout << type << " was eated the " << fruit.name << endl;
 	}
-	string type = "animal";
+	const string type;
 };
 
 class Cat: public Animal{
 public:
-	Cat(){
-		type = "Cat";
-	}
+	Cat(): Animal("cat")
+	{}
 };
 
 class Dog: public Animal{
 public:
-	Dog(){
-		type = "Dog";
-	}
+	Dog(): Animal("dog")
+	{}
 };
 
 void doMeal(const Animal & entity, const Fruit & eat){
