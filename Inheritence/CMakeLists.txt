@@ -1,0 +1,5 @@
+project(Inheritence)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+ADD_COMPILE_OPTIONS("-std=c++11")
+ADD_COMPILE_OPTIONS("-Werror")
+add_executable(prog main.cpp)
